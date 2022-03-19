@@ -23,9 +23,10 @@ function renderSoldItems(items) {
 }
 
 export default function MyListedItems({ marketplace, nft, account }) {
-  const [loading, setLoading] = useState(true)
-  const [listedItems, setListedItems] = useState([])
-  const [soldItems, setSoldItems] = useState([])
+  const [loading, setLoading] = useState(true);
+  const [listedItems, setListedItems] = useState([]);
+  const [soldItems, setSoldItems] = useState([]);
+
   const loadListedItems = async () => {
     // Load all sold items that the user listed
     const itemCount = await marketplace.itemCount()
@@ -59,14 +60,19 @@ export default function MyListedItems({ marketplace, nft, account }) {
     setListedItems(listedItems)
     setSoldItems(soldItems)
   }
+
   useEffect(() => {
-    loadListedItems()
-  }, [])
-  if (loading) return (
-    <main style={{ padding: "1rem 0" }}>
-      <h2>Loading...</h2>
-    </main>
-  )
+    loadListedItems();
+  }, []);
+
+  if (loading) {
+    return (
+      <main style={{ padding: "1rem 0" }}>
+        <h2>Loading...</h2>
+      </main>
+    );  
+  }
+  
   return (
     <div className="flex justify-center">
       {listedItems.length > 0 ?
