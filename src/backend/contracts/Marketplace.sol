@@ -33,6 +33,7 @@ contract Marketplace is ReentrancyGuard {
         uint price,
         address indexed seller
     );
+
     event Bought(
         uint itemId,
         address indexed nft,
@@ -79,6 +80,7 @@ contract Marketplace is ReentrancyGuard {
         require(_itemId > 0 && _itemId <= itemCount, "item doesn't exist");
         require(msg.value >= _totalPrice, "not enough ether to cover item price and market fee");
         require(!item.sold, "item already sold");
+        require(item.seller != address(this), "Can't buy own items");
         // pay seller and feeAccount
         item.seller.transfer(item.price);
         feeAccount.transfer(_totalPrice - item.price);

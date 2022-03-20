@@ -163,5 +163,12 @@ describe("NFTMarketplace", function () {
         marketplace.connect(addr3).purchaseItem(1, {value: totalPriceInWei})
       ).to.be.revertedWith("item already sold");
     });
+
+    it("Should fail when trying to buy own itmes", async function () {
+      // fails for invalid item ids
+      await expect(
+        marketplace.connect(addr1).purchaseItem(2, {value: totalPriceInWei})
+      ).to.be.revertedWith("item doesn't exist");
+    });
   })
 })
