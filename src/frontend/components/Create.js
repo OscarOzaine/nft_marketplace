@@ -1,8 +1,29 @@
 import { useState } from 'react'
 import { ethers } from "ethers"
 import { Row, Form, Button } from 'react-bootstrap'
+import { Buffer } from 'buffer';
 import { create as ipfsHttpClient } from 'ipfs-http-client'
-const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
+// const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
+const projectId = "2GKswOm6WXlcOgVNegBy4Tu5Lvj";
+const projectSecret = "7083550458c2ca20f9beffd6d4dd66aa";
+const subdomain = "testing.infura-ipfs.io";
+// Pay attentnion at the space between Basic and the $ in the next line
+// encrypt the authorization
+const authorization = `Basic ${Buffer.from(`${projectId}:${projectSecret}`).toString("base64")}`;
+
+// with this next variable, you are passing the necessary information in the request to infura, notice authorization
+// is being passed as argument headers
+const client = ipfsHttpClient({
+  host: "infura-ipfs.io",
+  port: 5001,
+  protocol: "https",
+  headers: {
+    authorization: authorization,
+  },
+});
+
+// const ipfsUrl = 'https://ipfs.infura.io/ipfs/';
+const ipfsSubdomain = 'https://oz-nft-marketplace.infura-ipfs.io';
 
 const Create = ({ marketplace, nft }) => {
   const [image, setImage] = useState('');
@@ -15,9 +36,10 @@ const Create = ({ marketplace, nft }) => {
     const file = event.target.files[0];
     if (typeof file !== 'undefined') {
       try {
-        const result = await client.add(file);
-        console.log(result);
-        setImage(`https://ipfs.infura.io/ipfs/${result.path}`);
+        const added = await client.add({ content: file });
+        const URL = `${ipfsSubdomain}/ipfs/${added.path}`;
+        console.log(URL);
+        setImage(URL);
       } catch (error){
         console.log("ipfs image upload error: ", error);
       }
@@ -25,11 +47,21 @@ const Create = ({ marketplace, nft }) => {
   }
 
   const createNFT = async () => {
+    console.log('create')
+    console.log({
+      image,
+      price,
+      name,
+      description,
+    })
     if (!image || !price || !name || !description) return
     try{
+      console.log('create 1')
       const result = await client.add(JSON.stringify({image, price, name, description}));
 
-      const uri = `https://ipfs.infura.io/ipfs/${result.path}`;
+      const uri = `${ipfsSubdomain}/ipfs/${result.path}`;
+
+      console.log(uri);
       // mint nft 
       await(await nft.mint(uri)).wait();
       // get tokenId of new nft 

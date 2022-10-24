@@ -1,0 +1,70 @@
+@import "../../style/variables.module.scss";
+
+.first-section {
+  box-sizing: border-box;
+  flex-basis: 50%;
+
+  @media (max-width: 1023px) {
+    margin-bottom: 1rem;
+    max-width: 354px;
+  }
+  .title {
+    margin: 0 0 0.5rem 0;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 4rem;
+    text-align: left;
+
+    @media (max-width: 1023px) {
+      font-size: 3rem;
+    }
+    .text-effect {
+      position: relative;
+    }
+    .text-effect::after {
+      content: "";
+      position: absolute;
+      top: 160%;
+      left: 50%;
+      width: 120px;
+      height: 120px;
+      transform: translate(-50%, -50%);
+      border: 2px solid transparent;
+      border-top: 2px solid #770777;
+      border-radius: 50%;
+      @media (max-width: 1023px) {
+        top: 190%;
+      }
+    }
+  }
+  .decription {
+    font-family: $font-desc;
+    width: 80%;
+    margin: 1rem 0;
+  }
+
+  .numbers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+    div {
+      flex-basis: 30%;
+      text-align: center;
+
+      p {
+        font-size: 2.5rem;
+        margin: 0;
+        font-weight: bold;
+        letter-spacing: 1px;
+
+        @media (max-width: 1023px) {
+          font-size: 1.5rem;
+        }
+      }
+      span {
+        font-size: 12px;
+        letter-spacing: 1px;
+      }
+    }
+  }
+}

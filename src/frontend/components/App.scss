@@ -1,0 +1,31 @@
+@import "../style/variables.module.scss";
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Poppins:wght@200;400&family=Space+Grotesk:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $bgc-color;
+  color: #fff;
+  overflow-x: hidden;
+  font-family: $font-main;
+}
+// reset
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+
+.App {
+  overflow-x: hidden;
+}

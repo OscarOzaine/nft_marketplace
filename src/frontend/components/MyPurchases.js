@@ -10,7 +10,7 @@ export default function MyPurchases({ marketplace, nft, account }) {
   const loadPurchasedItems = async () => {
     const marketplaceService = new MarketplaceService(marketplace);
     const purchases = await marketplaceService.getPurchases(nft, account);
-
+    console.log({purchases});
     setLoading(false);
     setPurchases(purchases);
   }

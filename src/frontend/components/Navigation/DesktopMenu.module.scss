@@ -1,0 +1,15 @@
+.list {
+    display: flex;
+    list-style: none;
+
+    a {
+        margin-right: 1.5rem;
+        cursor: pointer;
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        color: #ccc;
+    }
+}

@@ -1,0 +1,45 @@
+@import '../../style/variables.module.scss';
+
+.button {
+  background: $button-gradient;
+  min-width: 100px;
+  width: 100px;
+  height: 35px;
+  border: none;
+  margin-left: 10px;
+  padding: 5px 15px;
+  background-position: right top;
+  background-size: 200% auto;
+  text-align: center;
+  transition: 0.4s;
+  color: $light;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-position: left bottom;
+}
+
+.button.xl {
+  box-sizing: content-box;
+  width: 169px;
+  padding: 5px 15px;
+  margin: 0;
+  border-radius: 5px;
+}
+.button.l {
+  box-sizing: content-box;
+  width: 150px;
+  padding: 5px 15px;
+  margin: 0;
+  border-radius: 5px;
+}
+.button.watch {
+  background: transparent;
+  color: $light;
+  border: 1px solid $light;
+}
+.button.watch:hover {
+  background-color: $active-btn;
+}
