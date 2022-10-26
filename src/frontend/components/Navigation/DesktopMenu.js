@@ -1,48 +1,39 @@
-import desktopClasses from "./DesktopMenu.module.scss";
+import desktopClasses from './DesktopMenu.module.scss';
+import {
+    Link
+} from 'react-router-dom';
+import { Nav } from 'react-bootstrap'
 
 const DesktopMenu = (props) => {
   const { account } = props;
 
-  // <Route path="/" element={
-  //   <Home marketplace={marketplace} nft={nft} />
-  // } />
-  // <Route path="/create" element={
-  //   <Create marketplace={marketplace} nft={nft} />
-  // } />
-  // <Route path="/my-listed-items" element={
-  //   <MyListedItems marketplace={marketplace} nft={nft} account={account} />
-  // } />
-  // <Route path="/my-purchases" element={
-  //   <MyPurchases marketplace={marketplace} nft={nft} account={account} />
-  // } />
-
   if (account) {
     return (
       <ul className={desktopClasses.list}>
-        <a href="/marketplace">
-          <li>Marketplace</li>
-        </a>
-        <a href="/create">
-          <li>Create</li>
-        </a>
-        <a href="/my-listed-items">
-          <li>My Listed Items</li>
-        </a>
-        <a href="/my-purchases">
-          <li>My Purchases</li>
-        </a>
+        <Nav.Link as={Link} to="/marketplace">
+          Marketplace
+        </Nav.Link>
+        <Nav.Link as={Link} to="/create">
+          Create
+        </Nav.Link>
+        <Nav.Link as={Link} to="/my-listed-items">
+          My Listed Items
+        </Nav.Link>
+        <Nav.Link as={Link} to="/my-purchases">
+          My Purchases
+        </Nav.Link>
       </ul>
     );
   }
 
   return (
     <ul className={desktopClasses.list}>
-      <a href="#">
-        <li>Explore</li>
-      </a>
-      <a href="#">
-        <li>Marketplace</li>
-      </a>
+      <Nav.Link as={Link} to="/">
+        Explore
+      </Nav.Link>
+      <Nav.Link as={Link} to="/marketplace">
+        Marketplace
+      </Nav.Link>
     </ul>
   );
 };

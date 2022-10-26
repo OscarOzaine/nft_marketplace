@@ -3,10 +3,12 @@ import { ethers } from "ethers"
 import { Row, Form, Button } from 'react-bootstrap'
 import { Buffer } from 'buffer';
 import { create as ipfsHttpClient } from 'ipfs-http-client'
-// const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
-const projectId = "2GKswOm6WXlcOgVNegBy4Tu5Lvj";
-const projectSecret = "7083550458c2ca20f9beffd6d4dd66aa";
-const subdomain = "testing.infura-ipfs.io";
+import env from 'react-dotenv';
+
+const projectId = process.env?.REACT_APP_IPFS_PROJECT_ID;
+const projectSecret = process.env?.REACT_APP_IPFS_PROJECT_SECRET;
+const ipfsSubdomain = process.env?.REACT_APP_IPFS_SUBDOMAIN;
+
 // Pay attentnion at the space between Basic and the $ in the next line
 // encrypt the authorization
 const authorization = `Basic ${Buffer.from(`${projectId}:${projectSecret}`).toString("base64")}`;
@@ -22,10 +24,8 @@ const client = ipfsHttpClient({
   },
 });
 
-// const ipfsUrl = 'https://ipfs.infura.io/ipfs/';
-const ipfsSubdomain = 'https://oz-nft-marketplace.infura-ipfs.io';
-
 const Create = ({ marketplace, nft }) => {
+  console.log({env});
   const [image, setImage] = useState('');
   const [price, setPrice] = useState(null);
   const [name, setName] = useState('');
@@ -122,4 +122,4 @@ const Create = ({ marketplace, nft }) => {
   );
 }
 
-export default Create
+export default Create;

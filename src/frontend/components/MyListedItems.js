@@ -22,7 +22,7 @@ function renderSoldItems(items) {
   )
 }
 
-export default function MyListedItems({ marketplace, nft, account }) {
+function MyListedItems({ marketplace, nft, account }) {
   const [loading, setLoading] = useState(true);
   const [listedItems, setListedItems] = useState([]);
   const [soldItems, setSoldItems] = useState([]);
@@ -108,3 +108,5 @@ export default function MyListedItems({ marketplace, nft, account }) {
     </div>
   );
 }
+
+export default MyListedItems;
